@@ -1,0 +1,16 @@
+.search-bar {
+  /* border-radius: 15px;
+  border: none;
+  width: 80%;
+  background: url('https://uploads-ssl.webflow.com/61153727f9133b18782027e3/615da416bb7e4c065d971dd7_loupe-p-500.png')
+    no-repeat 2% whitesmoke;
+  background-size: 1em; */
+}
+
+.search-bar:not(:placeholder-shown){
+  background: 0% 50% whitesmoke;
+}
+
+.search-bar:focus {
+  background: whitesmoke;
+}

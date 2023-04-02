@@ -1,0 +1,16 @@
+.navbar {
+  font-family: 'Poximanova', sans-serif;
+  font-size: 1.375rem;
+  font-weight: 200;
+  &-nav {
+    gap: 15px;
+  }
+  &__link {
+    color: var(--link-color);
+    text-decoration: none;
+    cursor: pointer;
+    & + & {
+      margin-left: 60px;
+    }
+  }
+}

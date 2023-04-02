@@ -1,0 +1,41 @@
+.istu-logo {
+  height: var(--istu-logo-height, 50px);
+  max-width: var(--istu-logo-width, 200px);
+  border-radius: 100px;
+  padding: 8px 20px;
+  box-sizing: border-box;
+  font-family: 'Poximanova', sans-serif;
+  font-weight: 200;
+  color: #fff;
+  background-color: var(--istu-logo-bg);
+
+  &__image {
+    max-height: 100%;
+  }
+
+  &__titles {
+    margin-left: 10px;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    letter-spacing: 1px;
+    margin-top: 3px;
+    font-size: 0.875rem;
+  }
+
+  &__full-name {
+    margin-top: 3px;
+    line-height: 0.7;
+    font-size: 0.2rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .istu-logo {
+    width: 200px;
+    &__title {
+      font-size: 0.6rem;
+    }
+  }
+}

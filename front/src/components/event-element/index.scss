@@ -1,0 +1,26 @@
+.event-element {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  background-color: #f0f0f0;
+}
+
+.event-picture {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 100%;
+  background-color: #d9d9d9;
+}
+
+.event-name {
+  vertical-align: middle;
+}
+
+.event-date {
+}
+
+.event-action {
+}

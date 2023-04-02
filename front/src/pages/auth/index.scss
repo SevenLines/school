@@ -1,0 +1,8 @@
+.main-page {
+  max-width: 560px; 
+  &__title {
+    font-size: 2rem;
+    color: var(--title-color);
+    font-weight: 400;
+  }
+}
