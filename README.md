@@ -5,3 +5,6 @@
 
 
 [Readme по разворачиванию приложения на сервере](https://github.com/manInit/school/wiki/Deploy-readme)
+
+
+[Инструкция пользователя](https://github.com/manInit/school/wiki/User-guide)
