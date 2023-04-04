@@ -46,7 +46,6 @@ public class ActivityController {
 
     @Operation(summary = "Получить список всех мероприятий")
     @RequestMapping(method = RequestMethod.GET)
-
     public ResponseEntity<List<StudyActivity>> getAllActivities() {
         logger.info("Received GET /api/activities request");
         return ResponseEntity.ok(studyActivityService.getAll());
@@ -105,8 +104,7 @@ public class ActivityController {
 
     @Operation(summary = "Создать мероприятие")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ResponseEntity<?>
-            createActivity(@Parameter(
+    public ResponseEntity<?> createActivity(@Parameter(
                     description = "Объект для мероприятия, которое нужно создать") @RequestBody StudyActivity activity,
                     Principal principal) {
         if (!schoolchildService.findUserByEmail(principal.getName()).isAdmin()) {

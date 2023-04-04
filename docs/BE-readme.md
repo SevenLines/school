@@ -25,7 +25,24 @@
 <p>После того, как API метод поступает в класс Controller, дальнейшая обработка 
 запроса происходит в соответствии с прописанной в коде логикой.</p>
 
+<h4>Список API методов</h4>
+<ul>
+<li>GET /api/activities - Получить список всех мероприятий</li>
+<li>GET /api/activities/{id} - Получить мероприятие по id</li>
+<li>POST /api/activities/register - Зарегистрировать школьника на мероприятие</li>
+<li>POST /api/activities/appointment - Отметить факт, что школьник посетил мероприятие</li>
+<li>DELETE /api/activities/appointment - Удалить отметку о посещении мероприятия школьником</li>
+<li>POST /api/activities/create - Создать мероприятие</li>
+<li>PUT /api/activities - Обновить информацию о мероприятии</li>
+<li>DELETE /api/activities/{id} - Удаление мероприятия</li>
+<li>POST /api/register - Зарегистрировать пользователя</li>
+<li>POST /api/login - Аутентифицировать пользователя</li>
+<li>GET /api/schoolchildren/registered - Получить список школьников, которые зарегистрировались на мероприятие.</li>
+<li>GET /api/schoolchildren/appointment - Получить список школьников, которые посетили мероприятие.</li>
+<li>GET /api/schoolchildren - Получить список всех школьников</li>
+</ul>
+
 <h2 align="center">Структура базы данных</h2>
-<img src=".\src\main\resources\images\db_schema_structure.png" alt="Структура базы данных">
+<img src="https://raw.githubusercontent.com/manInit/school/main/back/src/main/resources/images/db_schema_structure.png" alt="Структура базы данных">
 
 
