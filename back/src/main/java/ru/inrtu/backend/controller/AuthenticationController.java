@@ -22,7 +22,7 @@ import ru.inrtu.backend.utils.JwtUtil;
  */
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("api/")
+@RequestMapping("api")
 public class AuthenticationController {
 
     private final SchoolchildService schoolchildService;
@@ -47,13 +47,14 @@ public class AuthenticationController {
     @PostMapping("/login")
     public ResponseEntity<SchoolchildDto> login(@RequestBody final SchoolchildDto schoolchildDto) {
         try {
-            authenticationManager
-                    .authenticate(new UsernamePasswordAuthenticationToken(schoolchildDto.getEmail(), schoolchildDto.getPassword()));
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(schoolchildDto.getEmail(), schoolchildDto.getPassword()));
         } catch (final BadCredentialsException e) {
             return ResponseEntity.badRequest().build();
         }
         final UserDetails userDetails = schoolchildService.loadUserByUsername(schoolchildDto.getEmail());
-        SchoolchildDto existedSchoolchildDto = schoolchildMapper.toDto(schoolchildService.findUserByEmail(schoolchildDto.getEmail()));
+        SchoolchildDto existedSchoolchildDto =
+                schoolchildMapper.toDto(schoolchildService.findUserByEmail(schoolchildDto.getEmail()));
         final String jwt = JwtUtil.generateToken(userDetails);
         existedSchoolchildDto.setToken(jwt);
         System.out.println("Schoolchild in response: " + existedSchoolchildDto);

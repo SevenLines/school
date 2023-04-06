@@ -13,6 +13,16 @@ import lombok.experimental.Accessors;
 @ToString
 public class ActivityAppointmentDto {
 
+    /**
+     * Свойства модели.
+     */
+    public static class Property {
+
+        public static final String SCHOOLCHILD_ID = "schoolchildId";
+
+        public static final String ACTIVITY_ID = "activityId";
+    }
+
     @Schema(description = "Идентификатор школьника которого нужно отметить на мероприятии")
     private Long schoolchildId;
 

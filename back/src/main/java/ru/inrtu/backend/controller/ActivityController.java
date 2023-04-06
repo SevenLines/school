@@ -132,7 +132,7 @@ public class ActivityController {
 
     @Operation(summary = "Удаление мероприятия")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?>deleteActivity(@PathVariable Long id){
+    public ResponseEntity<?> deleteActivity(@PathVariable Long id){
         try {
             studyActivityService.delete(id);
             return ResponseEntity.ok().build();

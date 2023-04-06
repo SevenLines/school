@@ -15,6 +15,16 @@ import java.util.Set;
 @Setter
 public class StudyActivity {
 
+    /**
+     * Свойства модели.
+     */
+    public static class Property {
+
+        public static final String NAME = "name";
+
+        public static final String DESCRIPTION = "description";
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;

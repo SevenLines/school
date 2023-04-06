@@ -28,12 +28,11 @@ public class SchoolchildrenController {
 
     private final SchoolchildService schoolchildService;
 
-
     @Operation(summary = "Получить список школьников, которые зарегистрировались на мероприятие.")
     @RequestMapping(value = "/registered", method = RequestMethod.GET)
     public ResponseEntity<List<SchoolchildrenStatusActivityDto>> getRegisteredSchoolchildren(@Parameter(
             description = "Идентификатор мероприятия для которого нужно получить зарегистрировавшихся школьников") @RequestParam Long activityId,
-                                                                                             Principal principal) {
+            Principal principal) {
         if (!schoolchildService.findUserByEmail(principal.getName()).isAdmin()) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
@@ -44,7 +43,7 @@ public class SchoolchildrenController {
     @RequestMapping(value = "/appointment", method = RequestMethod.GET)
     public ResponseEntity<List<SchoolchildrenStatusActivityDto>> getAppointmentSchoolchildren(@Parameter(
             description = "Идентификатор мероприятия для которого нужно получить школьников, посетивших мероприятие") @RequestParam Long activityId,
-                                                                                             Principal principal) {
+            Principal principal) {
         if (!schoolchildService.findUserByEmail(principal.getName()).isAdmin()) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
