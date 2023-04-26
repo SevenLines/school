@@ -8,6 +8,7 @@ import InputMask from 'react-input-mask';
 import authStore from '../../store/auth';
 
 import './index.scss';
+import { Modal } from 'react-bootstrap';
 
 const RegisterPage = () => {
   const {
@@ -28,6 +29,15 @@ const RegisterPage = () => {
     }
     navigate('/');
   };
+
+  const modalOptions = {
+    size: 'lg',
+    backdrop: true,
+    keyboard: true,
+  };
+  const [isModalActive, setModalActive] = useState(false);
+  const modalHandleClose = () => setModalActive(false);
+  const modalHandleShow = () => setModalActive(true);
 
   return (
     <div className='main-page mx-auto'>
@@ -199,7 +209,9 @@ const RegisterPage = () => {
                 <label className='form-check-label' htmlFor='agreementCheck'>
                   Согласие на обработку персональных данных
                 </label>
-                <a href='#'>Согласие</a>
+                <a href='#' onClick={modalHandleShow}>
+                  Согласие
+                </a>
               </div>
               {errors.agreementCheck && (
                 <div className='ms-2 invalid-feedback d-block'>
@@ -218,6 +230,22 @@ const RegisterPage = () => {
           </div>
         </div>
       </div>
+      <Modal
+        show={isModalActive}
+        onHide={modalHandleClose}
+        size={modalOptions.size}
+        backdrop={modalOptions.backdrop}
+        keyboard={modalOptions.keyboard}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Соглашение</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>txt</p>
+        </Modal.Body>
+        <Modal.Footer></Modal.Footer>
+      </Modal>
       <Toast
         className='mx-auto fixed-center bg-danger text-white text-center'
         onClose={() => setShowToast(false)}
