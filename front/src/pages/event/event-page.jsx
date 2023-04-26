@@ -6,6 +6,7 @@ import EventInfoRegistered from '../../modals/registered-students-info/registere
 import EventInfo from '../../modals/event-info/event-info';
 import SearchBar from '../../components/search-bar/search-bar';
 import authStore from '../../store/auth';
+import eventStore from '../../store/events';
 
 import './index.scss';
 import EventList from './event-list';
@@ -50,6 +51,26 @@ const EventPage = () => {
   const handleClose = () => {
     setModalActive(false);
   };
+  const sortJsonArrayByProperty = (jsonArray, propName) => {
+    return jsonArray.sort(function(a, b) {
+      const nameA = a[propName].toUpperCase();
+      const nameB = b[propName].toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+  };
+  const sortJsonArrayByDate = (jsonArray, propName) => {
+    return jsonArray.sort(function(a, b) {
+      const dateA = new Date(a[propName].split('-').reverse().join('-'));
+      const dateB = new Date(b[propName].split('-').reverse().join('-'));
+      return dateA - dateB;
+    });
+  };
   return (
     <>
       <Modal
@@ -65,22 +86,23 @@ const EventPage = () => {
         <div className='control-bar d-flex justify-content-between pe-4'>
           <Dropdown style={{ width: '180px' }}>
             <Dropdown.Toggle variant='light' style={{ width: '100%' }}>
-              Фильтры
+              Сортировка
             </Dropdown.Toggle>
             <Dropdown.Menu style={{ width: '180px' }}>
               <Dropdown.Item
                 onClick={() => {
-                  console.log('фильтр по дате');
+                  eventStore.filteredEvents = sortJsonArrayByProperty(eventStore.filteredEvents, 'name');
                 }}
               >
-                По дате
+                По названию
               </Dropdown.Item>
               <Dropdown.Item
                 onClick={() => {
-                  console.log('фильтр по количеству');
+                  const listSortedByStart = sortJsonArrayByDate(eventStore.filteredEvents, 'startDate');
+                  eventStore.filteredEvents = sortJsonArrayByDate(listSortedByStart, 'endDate');
                 }}
               >
-                По количеству
+                По дате
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
