@@ -215,7 +215,7 @@ const RegisterPage = () => {
               </div>
               {errors.agreementCheck && (
                 <div className='ms-2 invalid-feedback d-block'>
-                  Подтвердите соглашение
+                  Подтвердите согласие
                 </div>
               )}
               <div className='mt-3 d-flex justify-content-end'>
@@ -239,7 +239,7 @@ const RegisterPage = () => {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>Соглашение</Modal.Title>
+          <Modal.Title>Согласие</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>txt</p>
