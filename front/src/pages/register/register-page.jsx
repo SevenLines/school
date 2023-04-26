@@ -187,6 +187,25 @@ const RegisterPage = () => {
                   </div>
                 )}
               </div>
+              <div className='mt-3 school-checkbox-container'>
+                <input
+                  {...register('agreementCheck', {
+                    required: true,
+                  })}
+                  className='form-check-input'
+                  type='checkbox'
+                  id='agreementCheck'
+                />
+                <label className='form-check-label' htmlFor='agreementCheck'>
+                  Согласие на обработку персональных данных
+                </label>
+                <a href='#'>Согласие</a>
+              </div>
+              {errors.agreementCheck && (
+                <div className='ms-2 invalid-feedback d-block'>
+                  Подтвердите соглашение
+                </div>
+              )}
               <div className='mt-3 d-flex justify-content-end'>
                 <button className='btn btn-primary w-100'>
                   Зарегистрироваться

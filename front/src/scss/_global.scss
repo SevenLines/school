@@ -6,3 +6,17 @@
   border-radius: 25px;
   padding: 0.25rem 1.25rem;
 }
+
+.school-checkbox-container {
+  display: grid;
+  grid-template-columns: 2rem 1fr 5rem;
+  align-items: center;
+
+  & > input[type="checkbox"] {
+    margin: auto;
+  }
+
+  & > label {
+    margin-left: 0.4rem;
+  }
+}
