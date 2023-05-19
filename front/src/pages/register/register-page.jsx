@@ -6,9 +6,9 @@ import { emailRegExp } from '../../utils/reg-exp';
 import Toast from 'react-bootstrap/Toast';
 import InputMask from 'react-input-mask';
 import authStore from '../../store/auth';
-
-import './index.scss';
+import AgreementTxt from '../../modals/agreement/agreement';
 import { Modal } from 'react-bootstrap';
+import './index.scss';
 
 const RegisterPage = () => {
   const {
@@ -239,10 +239,12 @@ const RegisterPage = () => {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>Согласие</Modal.Title>
+          <Modal.Title>Согласие на обработку персональных данных</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>txt</p>
+          <div>
+            <AgreementTxt />
+          </div>
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
       </Modal>
