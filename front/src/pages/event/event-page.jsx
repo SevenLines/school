@@ -28,21 +28,27 @@ const EventPage = () => {
   };
   const showEventInfoModal = isAdmin
     ? (event) => {
-      setModalContent(
-        <EventEdit event={event} closeModal={handleClose}></EventEdit>
-      );
-      setModalOptions({
-        ...modalOptions,
-        backdrop: 'static',
-        keyboard: false,
-      });
-      setModalActive(true);
-    }
+        setModalContent(
+          <EventEdit event={event} closeModal={handleClose}></EventEdit>
+        );
+        setModalOptions({
+          ...modalOptions,
+          backdrop: 'static',
+          keyboard: false,
+        });
+        setModalActive(true);
+      }
     : (event) => {
-      setModalContent(<EventInfo event={event} isAuth={isAuth} closeModal={handleClose}></EventInfo>);
-      setModalOptions({ ...modalOptions, backdrop: true, keyboard: true });
-      setModalActive(true);
-    };
+        setModalContent(
+          <EventInfo
+            event={event}
+            isAuth={isAuth}
+            closeModal={handleClose}
+          ></EventInfo>
+        );
+        setModalOptions({ ...modalOptions, backdrop: true, keyboard: true });
+        setModalActive(true);
+      };
   const showEventRegisteredModal = (event) => {
     setModalContent(<EventInfoRegistered event={event}></EventInfoRegistered>);
     setModalOptions({ ...modalOptions, backdrop: true, keyboard: true });
@@ -51,8 +57,14 @@ const EventPage = () => {
   const handleClose = () => {
     setModalActive(false);
   };
-  const sortJsonArrayByProperty = (jsonArray, propName) => {
-    return jsonArray.sort(function(a, b) {
+  function _sort(arr, fn) {
+    const _arr = JSON.parse(JSON.stringify(arr));
+    _arr.sort(fn);
+    return _arr;
+  }
+
+  const sortJsonArrayByProperty = (propName) => {
+    return function (a, b) {
       const nameA = a[propName].toUpperCase();
       const nameB = b[propName].toUpperCase();
       if (nameA < nameB) {
@@ -62,14 +74,15 @@ const EventPage = () => {
         return 1;
       }
       return 0;
-    });
+    };
   };
-  const sortJsonArrayByDate = (jsonArray, propName) => {
-    return jsonArray.sort(function(a, b) {
+
+  const sortJsonArrayByDate = (propName) => {
+    return function (a, b) {
       const dateA = new Date(a[propName].split('-').reverse().join('-'));
       const dateB = new Date(b[propName].split('-').reverse().join('-'));
       return dateA - dateB;
-    });
+    };
   };
   return (
     <>
@@ -91,15 +104,24 @@ const EventPage = () => {
             <Dropdown.Menu style={{ width: '180px' }}>
               <Dropdown.Item
                 onClick={() => {
-                  eventStore.filteredEvents = sortJsonArrayByProperty(eventStore.filteredEvents, 'name');
+                  eventStore.filteredEvents = _sort(
+                    eventStore.filteredEvents,
+                    sortJsonArrayByProperty('name')
+                  );
                 }}
               >
                 По названию
               </Dropdown.Item>
               <Dropdown.Item
                 onClick={() => {
-                  const listSortedByStart = sortJsonArrayByDate(eventStore.filteredEvents, 'startDate');
-                  eventStore.filteredEvents = sortJsonArrayByDate(listSortedByStart, 'endDate');
+                  const sortedByStart = _sort(
+                    eventStore.filteredEvents,
+                    sortJsonArrayByDate('startDate')
+                  );
+                  eventStore.filteredEvents = _sort(
+                    sortedByStart,
+                    sortJsonArrayByDate('endDate')
+                  );
                 }}
               >
                 По дате
